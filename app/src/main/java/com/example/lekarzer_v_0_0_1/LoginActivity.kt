@@ -13,11 +13,15 @@ import android.view.Gravity
 import org.json.JSONObject
 
 import android.widget.Toast
+import com.google.gson.Gson
 
 import kotlinx.coroutines.*
+import java.io.Serializable
 
 
 class LoginActivity : AppCompatActivity() {
+
+    data class Token(val token: String): Serializable
 
     @SuppressLint("RtlHardcoded")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,8 +42,6 @@ class LoginActivity : AppCompatActivity() {
                 response = Poster.postExample(jsonObject)
             }
 
-            Log.e("response", response)
-
             if (response == "connection_error") {
                 val toast = Toast.makeText(this, "We are sorry, server is currently down.", Toast.LENGTH_LONG)
                 toast.setGravity(Gravity.LEFT,0,200)
@@ -55,10 +57,10 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    fun goToMainScreen(token: String) {
+    fun goToMainScreen(token_json: String) {
         Intent(this, MainActivity::class.java).also {
-            Global.global_token = token
-            Log.e("token", Global.global_token)
+            val token = Gson().fromJson(token_json, Token::class.java)
+            Global.global_token = token.token
             startActivity(it)
         }
     }

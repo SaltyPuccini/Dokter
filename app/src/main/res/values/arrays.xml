@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SpinnerInKotlin</string>
+    <string name="selected_item">Selected item:</string>
+
+    <string-array name="interesy">
+        <item>Zawal serca</item>
+        <item>Arytmia</item>
+        <item>Jaskra</item>
+        <item>Stozek rogowki</item>
+        <item>Zlamania</item>
+        <item>Zespol Downa</item>
+        <item>Zespol Kushinga</item>
+        <item>Choroba Wilsona</item>
+        <item>Malformacja Chiariego</item>
+        <item>Choroba Crohna</item>
+    </string-array>
+</resources>

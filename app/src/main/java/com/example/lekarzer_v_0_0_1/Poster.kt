@@ -68,6 +68,7 @@ object Poster {
             .build()
         val service = retrofit.create(APIService::class.java)
         val jsonObjectString = jsonObject.toString()
+        Log.e("Wysyłany Request", jsonObjectString)
         val requestBody = jsonObjectString.toRequestBody("application/json".toMediaTypeOrNull())
         val response = service.createEmployee(requestBody)
         if (response.isSuccessful) {
@@ -79,7 +80,7 @@ object Poster {
                 )
             )
             prettyJson = prettyJson.replace("\\s".toRegex(), "").trim();
-            Log.d("prettyJson", prettyJson)
+            Log.e("Otrzymana odpowiedz", prettyJson)
             return@withContext prettyJson
         } else {
             return@withContext "connection_error"
@@ -88,3 +89,4 @@ object Poster {
 }
 
 //{"name":"a","last_name":"b","age":"22","university":"piwiriri"}
+
