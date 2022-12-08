@@ -1,5 +1,7 @@
 package com.example.lekarzer_v_0_0_1
 
+import android.view.Gravity
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_config.*
@@ -14,12 +16,22 @@ class ConfigFragment : Fragment(R.layout.fragment_config) {
         super.onStart()
 
 
-        runBlocking {me = Gson().fromJson(askForMe(), Me::class.java)}
+        runBlocking { me = Gson().fromJson(askForMe(), Me::class.java) }
         updateInfoOnScreen(me)
 
         savebtn.setOnClickListener {
-            runBlocking {change_data()}
-            runBlocking {me = Gson().fromJson(askForMe(), Me::class.java)}
+            runBlocking { change_data() }
+            runBlocking {
+                val response = askForMe()
+                me = Gson().fromJson(response, Me::class.java)
+                if (!response.contains("error")){
+                    val toast = Toast.makeText(context, "You've successfully updated your bio!", Toast.LENGTH_LONG)
+                    toast.show()
+                }else{
+                    val toast = Toast.makeText(context, "Sorry, something went wrong. Please try again.", Toast.LENGTH_LONG)
+                    toast.show()
+                }
+            }
             updateInfoOnScreen(me)
         }
 
@@ -49,7 +61,7 @@ class ConfigFragment : Fragment(R.layout.fragment_config) {
         return response
     }
 
-    fun slownikZainteresowan(zainteresowanie : String):Int{
+    fun slownikZainteresowan(zainteresowanie: String): Int {
         when (zainteresowanie) {
             "Zawalserca" -> return 1
             "Arytmia" -> return 2
@@ -66,7 +78,6 @@ class ConfigFragment : Fragment(R.layout.fragment_config) {
     }
 
     fun change_data(): String {
-
 
 
         val jsonObject = JSONObject()

@@ -9,23 +9,26 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/tlo_doktera"
         android:orientation="vertical">
 
         <EditText
             android:id="@+id/editTextTextPersonName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="49dp"
             android:ems="10"
+            android:hint="Name"
             android:inputType="textPersonName"
-            android:hint="Name" />
+            android:singleLine="true" />
 
         <EditText
             android:id="@+id/editTextTextPersonSurname"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="61dp"
             android:ems="10"
             android:hint="Surname"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:singleLine="true" />
 
         <EditText
             android:id="@+id/editTextAge"
@@ -33,15 +36,17 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Age"
-            android:inputType="number" />
+            android:inputType="number"
+            android:singleLine="true" />
 
         <EditText
             android:id="@+id/editTextPwr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="University"
             android:inputType="textPersonName"
-            android:hint="University" />
+            android:singleLine="true" />
 
         <EditText
             android:id="@+id/editTextTextStatus"
@@ -49,7 +54,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Status"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:singleLine="true" />
 
         <EditText
             android:id="@+id/editTextprojects"
@@ -57,7 +63,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Current projects"
-            android:inputType="number" />
+            android:inputType="number"
+            android:singleLine="true" />
 
         <EditText
             android:id="@+id/editTextPhone"
@@ -65,7 +72,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Phone number"
-            android:inputType="phone" />
+            android:inputType="phone"
+            android:singleLine="true" />
 
         <Button
             android:id="@+id/savebtn"

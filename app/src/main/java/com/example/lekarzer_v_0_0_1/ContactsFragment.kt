@@ -19,7 +19,7 @@ class ContactsFragment : Fragment(R.layout.fragment_contacts) {
 
         val typeToken = object : TypeToken<List<Match>>() {}.type
         Log.e("a", a)
-        //val match_list = Gson().fromJson<List<Match>>(a, typeToken)
+        val match_list = Gson().fromJson<List<Match>>(a, typeToken)
 
 
         // this creates a vertical layout Manager
@@ -31,15 +31,9 @@ class ContactsFragment : Fragment(R.layout.fragment_contacts) {
         // This loop will create 20 Views containing
         // the image with the count of view\
 
-//        for (item in match_list) {
-//            data.add(ItemsViewModel(item))
-//        }
-
-
-//        data.add(ItemsViewModel(response.user_0))
-//        data.add(ItemsViewModel(response.user_1))
-
-
+        for (item in match_list) {
+            data.add(ItemsViewModel(item))
+        }
 
         // This will pass the ArrayList to our Adapter
         val adapter = CustomAdapter(data)

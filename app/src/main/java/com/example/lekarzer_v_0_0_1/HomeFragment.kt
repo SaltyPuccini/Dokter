@@ -64,7 +64,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         textViewAge.text = researcher.age.toString()
         textViewName.text = researcher.name
         textViewSurname.text = researcher.last_name
-        researcher.university=researcher.university
         textViewUni.text = researcher.university
         textViewStatus.text = researcher.status
         textViewHobby1.text = researcher.interest1
