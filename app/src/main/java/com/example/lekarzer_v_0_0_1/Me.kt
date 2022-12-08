@@ -13,6 +13,7 @@ data class Me(
     val interest1: String,
     val interest2: String,
     val interest3: String,
+    val id : Int,
 ) : Serializable
 
 

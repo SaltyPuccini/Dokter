@@ -60,7 +60,8 @@ object Poster {
 //        return responseToReturn
 //    }
 
-
+    //192.168.97.76:5000
+    //https://piwim-server-hqm5ttv7nq-lm.a.run.app
     suspend fun postExample(jsonObject: JSONObject): String = withContext(Dispatchers.IO) {
 
         val retrofit = Retrofit.Builder()

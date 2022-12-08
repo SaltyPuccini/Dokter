@@ -8,7 +8,7 @@ import org.json.JSONObject
 
 class ConfigFragment : Fragment(R.layout.fragment_config) {
 
-    var me = Me("", "", 0, "", "", "", 0, "", "", "")
+    var me = Me("", "", 0, "", "", "", 0, "", "", "", 0)
 
     override fun onStart() {
         super.onStart()
@@ -49,21 +49,40 @@ class ConfigFragment : Fragment(R.layout.fragment_config) {
         return response
     }
 
+    fun slownikZainteresowan(zainteresowanie : String):Int{
+        when (zainteresowanie) {
+            "Zawalserca" -> return 1
+            "Arytmia" -> return 2
+            "Jaskra" -> return 3
+            "Stozekrogowki" -> return 4
+            "Zlamania" -> return 5
+            "ZespolDowna" -> return 6
+            "ZespolKushinga" -> return 7
+            "ChorobaWilsona" -> return 8
+            "MalformacjaChiariego" -> return 9
+            "ChorobaCrohna" -> return 10
+        }
+        return 1
+    }
+
     fun change_data(): String {
+
+
+
         val jsonObject = JSONObject()
         jsonObject.put("token", Global.global_token)
         jsonObject.put("source", "app")
         jsonObject.put("function", "change_data")
-        jsonObject.put("imie", editTextTextPersonName.text.toString())
-        jsonObject.put("nazwisko", editTextTextPersonSurname.text.toString())
-        jsonObject.put("wiek", editTextAge.text)
-        jsonObject.put("uczelnia", editTextPwr.text.toString())
+        jsonObject.put("name", editTextTextPersonName.text.toString())
+        jsonObject.put("last_name", editTextTextPersonSurname.text.toString())
+        jsonObject.put("age", editTextAge.text)
+        jsonObject.put("university", editTextPwr.text.toString())
         jsonObject.put("status", editTextTextStatus.text.toString())
-        jsonObject.put("ilosc_aktywnych_projektow", editTextprojects.text)
-        jsonObject.put("numer_telefonu", editTextPhone.text.toString())
-        jsonObject.put("z1", me.interest1)
-        jsonObject.put("z2", me.interest2)
-        jsonObject.put("z3", me.interest3)
+        jsonObject.put("active_projects", editTextprojects.text)
+        jsonObject.put("number", editTextPhone.text.toString())
+        jsonObject.put("z1", slownikZainteresowan(me.interest1).toString())
+        jsonObject.put("z2", slownikZainteresowan(me.interest2).toString())
+        jsonObject.put("z3", slownikZainteresowan(me.interest3).toString())
 
         var response = ""
         runBlocking {

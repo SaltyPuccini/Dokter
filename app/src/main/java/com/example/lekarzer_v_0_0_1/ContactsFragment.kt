@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.fragment_contacts.*
 import kotlinx.coroutines.runBlocking
 import org.json.JSONObject
@@ -14,8 +15,11 @@ class ContactsFragment : Fragment(R.layout.fragment_contacts) {
         super.onStart()
         var a: String
         runBlocking { a = askForMatches() }
-        val response = Gson().fromJson(a, MacherMaster::class.java)
+//        val response = Gson().fromJson(a, MacherMaster::class.java)
 
+        val typeToken = object : TypeToken<List<Match>>() {}.type
+        Log.e("a", a)
+        //val match_list = Gson().fromJson<List<Match>>(a, typeToken)
 
 
         // this creates a vertical layout Manager
@@ -25,9 +29,15 @@ class ContactsFragment : Fragment(R.layout.fragment_contacts) {
         val data = ArrayList<ItemsViewModel>()
 
         // This loop will create 20 Views containing
-        // the image with the count of view
-        data.add(ItemsViewModel(response.user_0))
-        data.add(ItemsViewModel(response.user_1))
+        // the image with the count of view\
+
+//        for (item in match_list) {
+//            data.add(ItemsViewModel(item))
+//        }
+
+
+//        data.add(ItemsViewModel(response.user_0))
+//        data.add(ItemsViewModel(response.user_1))
 
 
 

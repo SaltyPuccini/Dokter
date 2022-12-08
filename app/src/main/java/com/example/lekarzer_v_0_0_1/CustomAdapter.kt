@@ -31,6 +31,7 @@ class CustomAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adap
         holder.textView2.text = ItemsViewModel.match.name
         holder.textView3.text = ItemsViewModel.match.number
 
+
     }
 
     // return the number of the items in the list
