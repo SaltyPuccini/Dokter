@@ -1,43 +1,44 @@
 package com.example.lekarzer_v_0_0_1
 
+import android.content.Intent
+import android.content.Intent.getIntent
 import androidx.fragment.app.Fragment
+import android.os.Bundle
+import android.util.Log
+import com.google.gson.Gson
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.coroutines.runBlocking
+import org.json.JSONObject
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
     override fun onStart() {
+
         super.onStart()
-        val (currentResearcher, nextResearcher) = updateResearchersData()
-        println("${currentResearcher.age}, ${nextResearcher.age}")
+
+
+
+        buttonYES.setOnClickListener {
+            val person = Gson().fromJson(askForPerson(), Researcher::class.java)
+        }
+
     }
 
-    fun updateResearchersData(): Pair<Researcher, Researcher> {
-        //Send post to server asking for the data of top 2 compatible researchers, not yet swiped
-        //then create json from string and serialize it to a local Researcher object
+    fun askForPerson(): String {
+        val jsonObject = JSONObject()
+        jsonObject.put("token", Global.global_token)
+        jsonObject.put("source", "app")
+        jsonObject.put("function", "next_person")
 
-        val researcher1 = Researcher(
-            "Rias",
-            "Gremory",
-            18,
-            "PWr",
-            "Looking for research",
-            1,
-            mutableListOf("Anatomy"),
-            mutableListOf("Hyperlink")
-        )
-
-        val researcher2 = Researcher(
-            "Rias",
-            "Gremory",
-            22,
-            "PWr",
-            "Looking for research",
-            1,
-            mutableListOf("Anatomy"),
-            mutableListOf("Hyperlink")
-        )
-
-        return Pair(researcher1, researcher2)
+        var response = ""
+        runBlocking {
+            response = Poster.postExample(jsonObject)
+        }
+        return response
     }
+
+
+
 }
 
 
